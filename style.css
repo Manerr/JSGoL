@@ -26,6 +26,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;pointer-events: none;
+			z-index: -1;
 			
 		}
 
@@ -163,6 +164,27 @@
 		flex-direction: row;
 		width: 100%;height: auto;
 		max-width: unset;
+
+	}
+
+	#buttons button{
+		font-size: 15px;
+	}
+
+}
+
+@media all and (orientation:landscape){
+	body{
+		flex-direction: row !important;
+/*		flex-wrap: wrap;*/
+	}
+
+	#buttons{
+		flex-direction: column;
+		width: auto;
+		height: 100%;
+/*		width: 100%;height: auto;*/
+/*		max-width: unset;*/
 
 	}
 
