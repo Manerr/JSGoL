@@ -258,13 +258,13 @@ run.onclick=function(){
 
 		// setTimeout(loopreminder,1000);
 		PLAYING=true;
-		this.innerHTML="<img src='2pause.png' class='button-image'>Pause";
+		this.innerHTML="<img src='icons/2pause.png' class='button-image'>Pause";
 		canvas.title="running";
 	}
 	else{
 		clearInterval(interval);
 		PLAYING=false;
-		this.innerHTML="<img src='play.png' class='button-image'>Run";
+		this.innerHTML="<img src='icons/play.png' class='button-image'>Run";
 		canvas.title="paused";
 
 	}
