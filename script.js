@@ -33,7 +33,7 @@ function drawnoloop(){
 
 
 function canvasResize(e) {
-	console.log(window.innerWidth,window.innerHeight);
+	// console.log(window.innerWidth,window.innerHeight);
 	let y=window.innerHeight;
 	let x=window.innerWidth;
 
@@ -41,7 +41,7 @@ function canvasResize(e) {
 
 
 	let devicesizeRatio=y/x;
-	console.log(devicesizeRatio);
+	// console.log(devicesizeRatio);
 
 	if(devicesizeRatio<=1){canvas.style.transform="scale("+y/SIZE/SCALEZOOM+")"}
 	else{canvas.style.transform="scale("+x/SIZE/SCALEZOOM+")"}
