@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Interpreter</title>
+	<link rel="icon" href="logo32x32_2.png" />
+
+	<link rel="stylesheet" type="text/css" href="style.css"/> 
+	<meta name="author" content="Manerr" />
+	<meta name="description" content="An online Conway's Game Of Life App. Fast and simple. One click app." />
+
+
+</head>
+<body>
+
+<div id="buttons">
+<button type="button"  id="run" class="button" >
+<img src="play.png" class="button-image">
+Run
+</button>
+<button type="button"  id="sizer" class="button" >
+<img src="size.png" class="button-image">
+Size
+</button>
+<button type="button"  id="rand" class="button" >
+<img src="cube.png" class="button-image">
+Random
+</button>
+<button type="button"  id="clr" class="button" >
+<img src="brush.png" class="button-image">
+Clear
+</button>
+<button type="button"  id="info" class="button" >
+<img src="info.png" class="button-image">
+About
+</button>
+</div>
+
+
+
+<main id="output">
+	<canvas  id="canvas" width="SIZE" height="SIZE" title="Paused."></canvas>
+</main>
+
+<section id="infobox">
+	<div>
+		
+		<button id="closeb">Close</button>
+	<p>
+		That's a simple (but working) Conway's Game of Life web version. (V1)<br> 
+		It's simple to use, but since I'm still working on (on my free time) it could be buggy and non-finished. (No real zoom and not really intuitive).<br>
+		Just click on the "array" where you want to put/delete a "cell".<br>
+	<br>
+		(Warning: be sure to disable performance mode if using Edge-> for a weird reason it runs each loop each 500ms if you're not clicking again after 30seconds... ).<br>
+	</p>	
+	<hr>
+	<p id="creds">No rights reserved, Manerr a.k.a Paul T_ 2024</p>	
+
+	</div>
+</section>
+
+
+
+
+</body>
+
+
+
+<script type="text/javascript" src="script.js">
+</script>
+
+
+
+
+
+
+
+
+</html>
