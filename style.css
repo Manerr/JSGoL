@@ -25,8 +25,9 @@
 			height: 100%;
 			display: flex;
 			justify-content: center;
-			align-items: center;pointer-events: none;
-			z-index: -1;
+			align-items: center;
+/*			pointer-events: none;*/
+/*			z-index: -1;*/
 			
 		}
 
@@ -55,6 +56,7 @@
 			justify-content: center;
 			max-width: 100px;
 			pointer-events: all;
+			z-index: 2;
 
 		}
 
@@ -122,11 +124,11 @@
 
 		#infobox div{
 			margin: auto;
-			width: 80%;
+			width: 86%;
 			max-width: 800px;
 
 			background: #202021;
-			padding: 1vmin 3vmin;
+			padding: 1vmin;
 			border-radius: 4px;
 			border: 2px solid #323231;
 			box-shadow: 0px 2px 10px -3px rgba(122,122,122,.7);
@@ -148,9 +150,10 @@
 
 		#closeb{
 			margin-left: auto;display: block;
-			border-radius: 10px/50%;
+			border-radius: 12px/50%;
 			appearance: none;
 			border: 0px;
+			padding: 4px 5vw;
 
 		}
 
