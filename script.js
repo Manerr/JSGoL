@@ -33,7 +33,7 @@ function drawnoloop(){
 
 
 function canvasResize(e) {
-	// console.log(window.innerWidth,window.innerHeight);
+	console.log(window.innerWidth,window.innerHeight);
 	let y=window.innerHeight;
 	let x=window.innerWidth;
 
@@ -41,7 +41,7 @@ function canvasResize(e) {
 
 
 	let devicesizeRatio=y/x;
-	// console.log(devicesizeRatio);
+	console.log(devicesizeRatio);
 
 	if(devicesizeRatio<=1){canvas.style.transform="scale("+y/SIZE/SCALEZOOM+")"}
 	else{canvas.style.transform="scale("+x/SIZE/SCALEZOOM+")"}
@@ -74,6 +74,9 @@ let ctx=canvas.getContext("2d");
 function clickMouse(e){
 	let Mx=e.offsetX;
 	let My=e.offsetY;
+
+	console.log(Mx,My);
+	console.log(e);
 
 	if(tab==0){
 	INITTABS();
@@ -247,6 +250,14 @@ let TIMEOUTTICKS=0;
 // function loopreminder() {
 
 
+pausePict=new Image();
+pausePict.src="icons/2pause.png";
+
+playPict=new Image();
+playPict.src="icons/play.png";
+
+
+
 
 run.onclick=function(){
 
@@ -258,13 +269,13 @@ run.onclick=function(){
 
 		// setTimeout(loopreminder,1000);
 		PLAYING=true;
-		this.innerHTML="<img src='icons/2pause.png' class='button-image'>Pause";
+		this.innerHTML="<img src='icons/2pause.png' class='button-image'/>Pause";
 		canvas.title="running";
 	}
 	else{
 		clearInterval(interval);
 		PLAYING=false;
-		this.innerHTML="<img src='icons/play.png' class='button-image'>Run";
+		this.innerHTML="<img src='icons/play.png' class='button-image'/>Run";
 		canvas.title="paused";
 
 	}
