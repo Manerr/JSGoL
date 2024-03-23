@@ -1,11 +1,41 @@
 
 
-let SIZE =	32;
+let SIZE =	64;
 let SCALEZOOM = 1.12;
 let TICK=0;
 
+let tab;
+let tabN;
+let tabTransition;
+
 let INFO_BOOL=false;
 
+const color="#289298";
+
+function INITTABS() {
+	console.log("INIT!");
+
+	
+	tab=new Array(SIZE);
+	for (var i = tab.length - 1; i >= 0; i--) {
+		tab[i]=new Array(SIZE);
+		tab[i].fill(0);
+	}
+	tabN=new Array(SIZE);
+	for (var i = tabN.length - 1; i >= 0; i--) {
+		tabN[i]=new Array(SIZE);
+		tabN[i].fill(0);
+	}
+	tabTransition=new Array(SIZE);
+	for (var i = tab.length - 1; i >= 0; i--) {
+		tabTransition[i]=new Array(SIZE);
+		tabTransition[i].fill(0);
+	}
+
+
+}
+
+tab=0;
 
 function changeSize(_size){
 
@@ -19,13 +49,12 @@ function changeSize(_size){
 
 
 function drawnoloop(){
-		ctx.fillStyle="turquoise";
+		ctx.fillStyle=color;
 		for (var x = 0; x <SIZE; x++) {
 				for (var y = 0; y <SIZE; y++) {
 					
 					cell=tab[y][x];
 					if(cell){
-						// console.log(x,y)
 						ctx.fillRect(x,y,1,1);
 					}
 		}}
@@ -33,21 +62,27 @@ function drawnoloop(){
 
 
 function canvasResize(e) {
-	console.log(window.innerWidth,window.innerHeight);
-	let y=window.innerHeight;
-	let x=window.innerWidth;
 
 
+	let x=canvas.parentElement.clientWidth;
+	let y=canvas.parentElement.clientHeight;
+
+	let newscale=1;
 
 
 	let devicesizeRatio=y/x;
 	console.log(devicesizeRatio);
 
-	if(devicesizeRatio<=1){canvas.style.transform="scale("+y/SIZE/SCALEZOOM+")"}
-	else{canvas.style.transform="scale("+x/SIZE/SCALEZOOM+")"}
+	if(devicesizeRatio<=1){
+		newscale=y/SIZE/SCALEZOOM;
+	}
+	else{
+		newscale=x/SIZE/SCALEZOOM;
+	}
+		// canvas.style.transform="scale("+newscale+")"}
 
-	canvas.style.width=SIZE+"px";
-	canvas.style.height=SIZE+"px";
+	canvas.style.width=(SIZE*newscale)+"px";
+	canvas.style.height=(SIZE*newscale)+"px";
 	
 
 	canvas.width=SIZE;
@@ -71,86 +106,46 @@ canvas=document.getElementById('canvas');
 	canvas.height=SIZE;	
 let ctx=canvas.getContext("2d");
 
-function clickMouse(e){
-	let Mx=e.offsetX;
-	let My=e.offsetY;
+function clickMouse(e,type){
+
+	let Mx=Math.floor(e.offsetX/canvas.clientWidth*SIZE);
+	let My=Math.floor(e.offsetY/canvas.clientHeight*SIZE);
 
 	console.log(Mx,My);
-	console.log(e);
+
+	if(Mx>=SIZE || My>=SIZE || Mx<0 || My<0){return}
 
 	if(tab==0){
 	INITTABS();
 	}
 
-
-	if( tab[My][Mx]==0){
-	ctx.fillStyle="turquoise";
-	ctx.fillRect(Mx,My,1,1);
+	if( tab[My][Mx]==0  || type==="drag"){
+	ctx.fillStyle=color;
 	tab[My][Mx]=1;
 	}
 	else{
 	ctx.fillStyle="black";
-	ctx.fillRect(Mx,My,1,1);
 	tab[My][Mx]=0;
 
 	}
 
 
+	ctx.fillRect(Mx,My,1,1);
 
 
-	drawnoloop();		
+	// drawnoloop();		
 }
 
 
 
 
-canvas.onclick=clickMouse;
-// canvas.onmousemove=dispMouse;
+canvas.onclick=function(e){clickMouse(e,"click")};
+canvas.ondrag=function(e){clickMouse(e,"drag")};
 
-
-function INITTABS() {
-	console.log("INIT!");
-
-	
-	tab=new Array(SIZE);
-	for (var i = tab.length - 1; i >= 0; i--) {
-		tab[i]=new Array(SIZE);
-		tab[i].fill(0);
-	}
-	tabN=new Array(SIZE);
-	for (var i = tabN.length - 1; i >= 0; i--) {
-		tabN[i]=new Array(SIZE);
-		tabN[i].fill(0);
-	}
-	tabTransition=new Array(SIZE);
-	for (var i = tab.length - 1; i >= 0; i--) {
-		tabTransition[i]=new Array(SIZE);
-		tabTransition[i].fill(0);
-	}
-
-
-	// tab[32][31]=1;
-	// tab[32][32]=1;
-	// tab[32][33]=1;
-
-	// tab[32][31]=1;
-	// tab[32][32]=1;
-	// tab[33][31]=1;
-	// tab[33][32]=1;
-
-}
-
-tab=0;
-
-
-function trueloop(){
-
-}
 
 
 
 function loop(){
-	// console.log("TICK",TICK);
 	TICK++
 	if(tab==0){
 
@@ -160,19 +155,19 @@ function loop(){
 		ctx.fillStyle="black";
 		ctx.fillRect(0,0,SIZE,SIZE);
 
-		ctx.fillStyle="turquoise";
+		ctx.fillStyle=color;
 
 	for (var x = 0; x <SIZE; x++) {
 		for (var y = 0; y <SIZE; y++) {
 			
 			cell=tab[y][x];
-			// if(cell){
-			// 	// console.log(x,y)
-			// 	ctx.fillRect(x,y,1,1);
-			// }
+			
 			neighbours=0;
 	
-	// LOOKING FOR NEIGHBOURS: 
+	// LOOKING FOR NEIGHBOURS:
+	//   1
+	// 1 1
+	//  11 
 
 			minX=x-1;
 			minY=y-1;
@@ -197,7 +192,6 @@ function loop(){
 				chk++	
 				}
 			}
-			// console.log(y,x,chk);
 
 			tabN[y][x]=neighbours;
 
@@ -208,7 +202,6 @@ function loop(){
 			else if(neighbours==3){tabTransition[y][x]=1}
 			else if(neighbours==2 && cell){tabTransition[y][x]=1}
 
-			// tab[y][x]=tabTransition[x][y];
 
 	
 
@@ -234,10 +227,8 @@ let run=document.getElementById("run");
 let random=document.getElementById("rand");
 let clr=document.getElementById("clr");
 let sizer=document.getElementById("sizer");
-let showinfo=document.getElementById("info");
+let filler=document.getElementById("fill");
 
-let infobox=document.getElementById('infobox');
-let infoboxbutton=document.getElementById('closeb');
 
 
 
@@ -246,8 +237,6 @@ let infoboxbutton=document.getElementById('closeb');
 let PLAYING=false;
 let TIMEOUTTICKS=0;
 
-
-// function loopreminder() {
 
 
 pausePict=new Image();
@@ -287,8 +276,6 @@ clr.onclick=function(){
 		INITTABS();
 		loop();
 
-		// window.clearInterval(interval);
-
 		}
 
 
@@ -300,7 +287,7 @@ rand.onclick=function(){
 			tab[y][x]=Math.floor(Math.random()*2);
 		}
 	}
-
+	ctx.clearRect(0,0,SIZE,SIZE);
 	drawnoloop();
 }
 
@@ -308,6 +295,7 @@ rand.onclick=function(){
 // 	let scale=e.deltaY;
 // 	if(scale>0.5){SCALEZOOM*=1.05}
 // 	else if(scale<0.5){SCALEZOOM/=1.05}
+// 	if(SCALEZOOM<.1){SCALEZOOM=.1;}
 // 	canvasResize();
 // }
 
@@ -333,31 +321,29 @@ sizer.onclick=function(e){
 }
 
 
-function FSHOWINFO(e){
+filler.onclick=function(e){
 
-	if(INFO_BOOL){
-		INFO_BOOL=false;
-		infobox.style.opacity="0";
 
-		setTimeout(function(){infobox.style.display="none";},800);
-		return;
 
+	if(tab==0){
+		INITTABS();
 	}
-	else{
-		INFO_BOOL=true;
-		infobox.style.display="flex";
 
-		setTimeout(function(){infobox.style.opacity=".9";},100);
 
-		return;
+		INITTABS();
 
+	for (var y = tab.length - 1; y >= 0; y--) {
+		for (var x = tab.length - 1; x >= 0; x--) {
+			tab[y][x]=1;
+		}
 	}
+
+	drawnoloop();
+
+	drawnoloop();
+
+
 
 }
-
-
-showinfo.onclick=FSHOWINFO;
-infoboxbutton.onclick=FSHOWINFO;
-
 
 
