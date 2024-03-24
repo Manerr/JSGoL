@@ -6,7 +6,7 @@
 - [x] It's lightweight 
 - [ ] Please note the code is not really optimized, since I've finished months ago (right now I'm sure I wouldn't totally "clone" it).
 
-**Screenshot** : ![image](https://github.com/Manerr/JSGoL/screenshot.jpg)
+**Screenshot** : ![screenshot.jpg](https://github.com/Manerr/JSGoL/screenshot.jpg)
 
 
 ### Feel free to use it/improve it, just fork!
