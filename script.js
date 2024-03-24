@@ -10,7 +10,7 @@ let tabTransition;
 
 let INFO_BOOL=false;
 
-const color="#289298";
+const color="#28aaa2";
 
 function INITTABS() {
 	console.log("INIT!");
@@ -140,8 +140,12 @@ function clickMouse(e,type){
 
 
 canvas.onclick=function(e){clickMouse(e,"click")};
-canvas.ondrag=function(e){clickMouse(e,"drag")};
-
+canvas.ondrag=function(e){e.dataTransfer.dropEffect = 'grab';clickMouse(e,"drag")};
+canvas.addEventListener("dragstart", function( event ) {
+    var img = new Image();
+    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+    event.dataTransfer.setDragImage(img, 0, 0);
+}, false);
 
 
 
@@ -255,8 +259,6 @@ run.onclick=function(){
 		interval=window.setInterval(loop,30);
 
 
-
-		// setTimeout(loopreminder,1000);
 		PLAYING=true;
 		this.innerHTML="<img src='icons/2pause.png' class='button-image'/>Pause";
 		canvas.title="running";
