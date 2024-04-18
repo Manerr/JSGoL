@@ -7,7 +7,7 @@
 - [x] It's pretty intuitive: draw your "cells", clear the "canvas", change its size, clean it...
 - [ ] Please note the code is not really optimized, since I've finished th v1 months ago (right now I'm sure I wouldn't totally "clone" it).
 
-**Screenshot** : ![image](https://github.com/Manerr/JSGoL/screenshot.jpg)
+**Screenshot** : ![image](https://github.com/Manerr/JSGoL/blob/main/screenshot.jpg)
 
 
 ### Feel free to use it/improve it, just fork!
