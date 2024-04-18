@@ -4,7 +4,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>Conway's Game Of Life Web app. Made with Vanilla JS</title>
-	<link rel="icon" href="logo32x32.png" />
+	<link rel="icon" href="icons/logo32x32.png" />
 
 	<link rel="stylesheet" type="text/css" href="style.css"/> 
 	<meta name="author" content="Manerr" />
@@ -12,35 +12,40 @@
 
 
 </head>
-<body>
+<body class="minimize">
 
 <div id="buttons">
+<button type="button"  id="minimizer" class="button"  title="Minimize">
+<img src="icons/minimize.svg" class="button-image" alt="minimize">
+<span>Mini</span>
+</button>
 <button type="button"  id="run" class="button" >
-<img src="icons/play.png" class="button-image">
-Run
+<img src="icons/play.svg" class="button-image displayed" alt="play button" title="play">
+<img src="icons/pause.svg" class="button-image notdisplayed" alt="pause button" title="pause">
+<span>Run</span>
 </button>
-<button type="button"  id="sizer" class="button" >
-<img src="icons/size.png" class="button-image">
-Size
+<button type="button"  id="sizer" class="button"  title="Change size">
+<img src="icons/size.svg" class="button-image" alt="resizer button">
+<span>Size</span>
 </button>
-<button type="button"  id="rand" class="button" >
-<img src="icons/cube.png" class="button-image">
-Random
+<button type="button"  id="rand" class="button" title="Randomize">
+<img src="icons/casino.svg" class="button-image" alt="dice" >
+<span>Random</span>
 </button>
-<button type="button"  id="fill" class="button" >
-<img src="icons/fill.png" class="button-image">
-Fill
+<button type="button"  id="fill" class="button" title="Fill" >
+<img src="icons/fill.svg" class="button-image"  alt="painting tool" >
+<span>Fill</span>
 </button>
-<button type="button"  id="clr" class="button" >
-<img src="icons/brush.png" class="button-image">
-Clear
+<button type="button"  id="clr" class="button"  title="Clear">
+<img src="icons/delete.svg" class="button-image" alt="wastebasket">
+<span>Clear</span>
 </button>
 </div>
 
 
 
 <main id="output">
-	<canvas draggable="true" id="canvas" width="SIZE" height="SIZE" title="Paused."></canvas>
+	<canvas draggable="true" id="canvas" width="SIZE" height="SIZE" title="Paused." class="waiting" ></canvas>
 </main>
 
 
@@ -52,7 +57,7 @@ Clear
 
 
 
-<script type="text/javascript" src="script.js">
+<script type="text/javascript" src="script2.js">
 </script>
 
 

@@ -8,13 +8,14 @@
 			height: 100%;
 			overflow: hidden;
 
-			background: linear-gradient(white 7px,#111213 9px,#202021);
+			background: linear-gradient(white 9px,#111213 11px,#202021);
 			color: white;
 			
 			display: flex;
 			flex-wrap: wrap;
 			font-weight: 100;
 			user-select: none;
+			-webkit-user-select: none;
 
 
 
@@ -42,6 +43,14 @@
 			image-rendering: pixelated;
 			z-index: 0;pointer-events: all;
 			border: 1px solid white;
+			border-radius: 2px;
+			box-shadow: 0px 1px 20px #3c3c48;
+		}
+
+
+
+		#canvas.waiting{
+/*			box-shadow: 0px 1px 12px aliceblue inset;*/
 		}
 
 
@@ -60,27 +69,29 @@
 		.button-image{
 			display: block;
 			margin: 4px auto;
-			width: 32px;
+			width: 38px;
 			transition: 1s transform,1s filter;
-			filter: opacity(75%) invert(0);
+			filter: opacity(68%) invert(20%);
 			transform-origin: center;
-			backdrop-filter: drop-shadow(4px,4px);
+			pointer-events: all;
 		}
 
 		.button:hover .button-image{
-/*			filter: invert(30%);*/
+			filter: opacity(80%) invert(0%);
 			transition: 1s transform,1s filter;
-			transform: scale(1.1) rotateZ(-15deg);
+			transform: scale(1.1);
 
 		}
 
 	
 		.button{
-			width: 90%;
-			font-size: large;
+			color: #3b3a3a;
+			outline: none;
+			width: auto;
 			margin: 2px 4px;
 			border: 1px solid #444444;
 			border: none;
+			outline: 1px solid transparent;
 
 			background: transparent;
 			font-family: sans-serif;
@@ -89,19 +100,59 @@
 			border-radius: 4px;
 			transition: 1s border-color,1s border-width;
 			cursor: pointer;
+/*			pointer-events: none;*/
 		}
 
-		.button:hover{
-			border-color: turquoise;
-			transition: 1s border-color;
+		.button span{
+			display: inline-block;
+			font-size: small;
+			transform: scale(1);
+			transition: .5s transform;
+		}
+
+
+		body.minimizing .button span{
+			transform: scale(.1);
+			transition: .5s transform;
+/*			display: none;*/
+		}
+
+		body.minimize .button span{
+/*			opacity: 0;*/
+			visibility: hidden;
+			font-size: 0px;
+			transform: scale(0);
+			transition: .5s transform;
+		}
+
+		body.minimize .button-image{
+			margin: 1px;
+		}
+
+		.button:hover img{
+/*			border-color: turquoise;*/
+/*			transition: 1s border-color;*/
 
 		}
 
-		.button:active{
-			border-width: 2px;padding: 4px 1px;
-
-
+		.button:active img{
 		}
+
+		.displayed{
+			display: block;
+		}
+
+		.notdisplayed{
+			display: none;
+		}
+
+
+@media all and (min-width:1000px){
+	button span{
+    font-size: large;
+	}
+}
+
 
 
 
@@ -116,10 +167,16 @@
 		width: 100%;height: auto;
 		max-width: unset;
 
+
 	}
 
 	#buttons button{
 		font-size: 13px;
+		width: 64px;
+	}
+
+	.minimize img.button-image{
+		margin: auto;
 	}
 
 
